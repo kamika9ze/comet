@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="minimal-ui, width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>Comet</title>
+<style>
+  @keyframes scale {
+    0% {
+    	transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+    45% {
+      transform: scale(0);
+      -o-transform: scale(0);
+      -ms-transform: scale(0);
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    }
+    80% {
+      transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+  }
+  
+  @-o-keyframes scale {
+    0% {
+    	transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+    45% {
+      transform: scale(0);
+      -o-transform: scale(0);
+      -ms-transform: scale(0);
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    }
+    80% {
+      transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+  }
+  
+  @-ms-keyframes scale {
+    0% {
+    	transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+    45% {
+      transform: scale(0);
+      -o-transform: scale(0);
+      -ms-transform: scale(0);
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    }
+    80% {
+      transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+  }
+  
+  @-webkit-keyframes scale {
+    0% {
+    	transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+    45% {
+      transform: scale(0);
+      -o-transform: scale(0);
+      -ms-transform: scale(0);
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    }
+    80% {
+      transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+  }
+  
+  @-moz-keyframes scale {
+    0% {
+    	transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+    45% {
+      transform: scale(0);
+      -o-transform: scale(0);
+      -ms-transform: scale(0);
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    }
+    80% {
+      transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+  }
+  
+  body {
+  	margin: 0;
+  	background: #FFF;
+  }
+  
+  
+  
+  body .main-preloader {
+  	background: #FFF;
+  	visibility: visible;
+  	opacity: 1;
+  	top: 0;
+  	z-index: 9999;
+  	position: fixed;
+  	width: 100%;
+  	height: 100%;
+  	color: #000;
+  	overflow: hidden;
+  }
+  
+  body .main-preloader.main-preloader-inactive {
+  	visibility: hidden;
+  	opacity: 0;
+  	-moz-opacity: 0;
+  	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  	transition: visibility 0.81s, opacity 0.8s linear;
+  	-o-transition: visibility 0.81s, opacity 0.8s linear;
+  	-ms-transition: visibility 0.81s, opacity 0.8s linear;
+  	-webkit-transition: visibility 0.81s, opacity 0.8s linear;
+  	-moz-transition: visibility 0.81s, opacity 0.8s linear;
+  }
+  
+  body .main-preloader .preloader {
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	margin-left: -49px;
+  
+  }
+  
+  
+  .main-preloader .preloader > div {
+    background-color: #194285;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    margin: 0px 5px;
+    animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    display: inline-block;
+  }
+  
+  body .main-preloader .preloader > div:nth-child(1) {
+    animation: scale 1s -0.24s infinite;
+    -o-animation: scale 1s -0.24s infinite;
+    -ms-animation: scale 1s -0.24s infinite;
+    -webkit-animation: scale 1s -0.24s infinite;
+    -moz-animation: scale 1s -0.24s infinite;
+  }
+  .main-preloader .preloader > div:nth-child(2) {
+    animation: scale 1s -0.12s infinite;
+    -o-animation: scale 1s -0.12s infinite;
+    -ms-animation: scale 1s -0.12s infinite;
+    -webkit-animation: scale 1s -0.12s infinite;
+    -moz-animation: scale 1s -0.12s infinite;
+  }
+  body .main-preloader .preloader > div:nth-child(3) {
+    animation: scale 1s 0s infinite;
+    -o-animation: scale 1s 0s infinite;
+    -ms-animation: scale 1s 0s infinite;
+    -webkit-animation: scale 1s 0s infinite;
+    -moz-animation: scale 1s 0s infinite;
+  }
+</style>
+  <link rel="apple-touch-icon" sizes="57x57" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-180x180.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Comet"><link rel="icon" type="image/png" sizes="32x32" href="/icons-787d0e4e69f7396e25605762f21bb827/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/icons-787d0e4e69f7396e25605762f21bb827/favicon-16x16.png"><link rel="shortcut icon" href="/icons-787d0e4e69f7396e25605762f21bb827/favicon.ico"><meta name="mobile-web-app-capable" content="yes"><meta name="theme-color" content="#fff"><meta name="application-name" content="Comet"><link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-320x460.png"><link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-640x920.png"><link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-640x1096.png"><link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-750x1294.png"><link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-1182x2208.png"><link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-1242x2148.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-748x1024.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-768x1004.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-1496x2048.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-1536x2008.png"><link href="/bundles/styles/styles.css?d9e79c315bb32f2c95f7" rel="stylesheet"><link href="/bundles/app/app.css?d9e79c315bb32f2c95f7" rel="stylesheet"><script type="text/javascript" src="/bundles/styles/styles.min.js?d9e79c315bb32f2c95f7"></script><script type="text/javascript" src="/bundles/scripts/scripts.min.js?d9e79c315bb32f2c95f7"></script><script type="text/javascript" src="/bundles/app/app.min.js?d9e79c315bb32f2c95f7"></script></head>
+  <body lang="ua">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111243022-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-111243022-1');
+</script><script type="text/javascript">(function(g,a,i){(a[i]=a[i]||[]).push(function(){try{a.yaCounter46629366=new Ya.Metrika({id:46629366,clickmap:true,trackLinks:true,accurateTrackBounce:true})}catch(c){}});var h=g.getElementsByTagName("script")[0],b=g.createElement("script"),e=function(){h.parentNode.insertBefore(b,h)};b.type="text/javascript";b.async=true;b.src="https://mc.yandex.ru/metrika/watch.js";if(a.opera=="[object Opera]"){g.addEventListener("DOMContentLoaded",e,false)}else{e()}})(document,window,"yandex_metrika_callbacks");</script> <noscript> <div><img src="https://mc.yandex.ru/watch/46629366" style="position:absolute;left:-9999px" alt=""/></div> </noscript>
+    <div class="main-preloader">
+      <div class="preloader">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <main>
+<header directive="header">
+  <div class="inner">
+    <div class="logo"><a href="/ua/"></a></div>
+    <div class="menu active">
+      <div class="list">
+        <ul>
+          <li class="drop">
+            <div class="title">Продукти</div>
+            <div class="items">
+              <ul class="products">
+                <li><a href="/ua/products/powder_without_chlorinol.html">
+                    <div class="img"><img src="/static/assets/img/menu/without_chlorinol_morning_breathe.png?68ff462b27aacc56017b7a5c88fd5c26"></div>
+                    <p>Порошок<br>чистячий Comet<br>без хлору</p></a></li>
+                <li><a href="/ua/products/powder_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/universal-lemon.png?6559506018fb03c26ebb84e89784a343"></div>
+                    <p>Унiверсальний<br>порошок Comet</p></a></li>
+                <li><a href="/ua/products/universal_gel_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/universal-gel-lemon.png?6d29157a3f79b70762531ee43933214d"></div>
+                    <p>Унiверсальний<br>гель Сomet</p></a></li>
+                <li><a href="/ua/products/toilet_gel_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/toilet_expert_breeze.png?e28078dfe152596419a4f16948d8b60f"></div>
+                    <p>Гель для туалету<br>Comet</p></a></li>
+                <li><a href="/ua/products/scour_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/scour.png?bc6252397b9ada8fa62158b702af39f0"></div>
+                    <p>Засіб для чищення<br>туалету Comet</p></a></li>
+                <li><a href="/ua/products/bathroom_gel_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/bomet-bath-gel-500ml.png?44ebdfd1ed9ec0e1c1bbe00e97334f27"></div>
+                    <p>Гель для ванної<br>кімнати Comet</p></a></li>
+                <li><a href="/ua/products/bathroom_spray_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/comet-bath-spray-500ml.png?fd0aec27cf9b545b45b55e199fd7a2ac"></div>
+                    <p>Спрей для ванної<br>кімнати Comet</p></a></li>
+                <li><a href="/ua/products/toilet_block.html">
+                    <div class="img"><img src="/static/assets/img/menu/toilet_block.png"></div>
+                    <p>Туалетний блок<br> Comet</p></a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="drop">
+            <div class="title"><a href="/ua/expert_advice/index.html">Поради експертів</a></div>
+            <div class="items">
+              <ul>
+                <li><a href="/ua/expert_advice/kitchen.html">Кухня</a></li>
+                <li><a href="/ua/expert_advice/bathroom.html">Ванна кімната</a></li>
+                <li><a href="/ua/expert_advice/toilet.html">Туалет</a></li>
+                <li><a href="/ua/expert_advice">Усі поради</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="lang">
+        <ul>
+          <li>ua</li>
+          <li><a href="/rus/">rus</a></li>
+          <li><a href="/kz/">kaz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="menu-collapsed" icon="blue">
+      <div class="wrapper">
+        <div class="icon"></div>
+        <div class="container">
+          <div class="close"><img src="/static/assets/img/menu/close.png?ef545f1cb30dd70146587c9abaa1c2f9"></div>
+          <div class="list">
+            <ul>
+              <li class="drop">
+                <div class="title"><span>Продукти</span></div>
+                <div class="items">
+                  <ul>
+                    <li><a href="/ua/products/powder_without_chlorinol.html">Порошок чистячий Comet без хлору</a></li>
+                    <li><a href="/ua/products/powder_comet.html">Універсальний порошок Сomet</a></li>
+                    <li><a href="/ua/products/universal_gel_comet.html">Універсальний гель Сomet</a></li>
+                    <li><a href="/ua/products/toilet_gel_comet.html">Гель для туалету Comet</a></li>
+                    <li><a href="/ua/products/scour_comet.html">Засіб для чищення туалету Comet</a></li>
+                    <li><a href="/ua/products/bathroom_gel_comet.html">Гель для ванної кімнати Comet</a></li>
+                    <li><a href="/ua/products/bathroom_spray_comet.html">Спрей для ванної кімнати Comet</a></li>
+                    <li><a href="/ua/products/toilet_block.html">Туалетний блок Comet</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="drop">
+                <div class="title"><span>Поради експертів</span></div>
+                <div class="items">
+                  <ul>
+                    <li><a href="/ua/expert_advice/kitchen.html">Кухня</a></li>
+                    <li><a href="/ua/expert_advice/bathroom.html">Ванна кімната</a></li>
+                    <li><a href="/ua/expert_advice/toilet.html">Туалет</a></li>
+                    <li><a href="/ua/expert_advice">Усі поради</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><a href="http://comet.ru/winthetime/">Aкция</a></li>
+            </ul>
+          </div>
+          <div class="lang">
+            <ul>
+              <li class="active">ua</li>
+              <li><a href="/rus/">ru</a></li>
+              <li><a href="/kz/">kaz</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="page toilet" page="article">
+        <div class="top-frame" directive="topFrame">
+          <div class="front">
+            <div class="inner">
+              <h1>Туалет</h1>
+              <p>Прибирання туалету - не найприємніше заняття, та зате як добре, коли в санвузлі все сяє чистотою і пахне свіжістю! Туалет - зазвичай невелика кімната або частина поєднаного санвузла, тому багато часу для прибирання не знадобиться.</p>
+              <ul>
+                <li><a href=""><img src="/static/assets/img/icons/facebook-logo.png?eddc1e7206e3742a4c49bb7223b90471"></a></li>
+                <li><a href=""><img src="/static/assets/img/icons/vk-logo.png?98ad7848d4a81cdd2ea95705cc84c152"></a></li>
+                <li><a href=""><img src="/static/assets/img/icons/instagram-logo.png?536c3080f6fc47e3c71a708272226470"></a></li>
+              </ul>
+            </div>
+            <div class="round-bottom">
+              <div class="round">
+                <div class="down"></div>
+              </div>
+            </div>
+          </div>
+          <div class="back">
+            <div class="overlay overlay-blue"></div>
+            <div class="overlay overlay-white"></div>
+            <div class="bg"></div>
+          </div>
+        </div>
+        <div class="sections">
+          <section class="rules">
+            <div class="inner">
+              <h3>Є декілька правил, які істотно<br>спростять вам роботу: </h3>
+              <ul>
+                <li>
+                  <p><img src="/static/assets/img/icons/2/15.png?1846657d0e6136b2732b151de718b675"><span>1</span></p>
+                  <p>Перед початком прибирання туалету надіньте гумові рукавички, щоб уникнути контакту із скупченням бактерій і побутовою хімією.</p>
+                </li>
+                <li>
+                  <p><img src="/static/assets/img/icons/2/13.png?b182e17f139057f18b52d55b2b3e2b98"><span>2</span></p>
+                  <p>Запасіться чистими ганчірками, оскільки вам доведеться їх міняти для миття поверхонь з різними характерами забруднень. </p>
+                </li>
+                <li>
+                  <p><img src="/static/assets/img/icons/2/16.png?8f68b8317ac1cca43d0b4c1e4bcdd825"><span>3</span></p>
+                  <p>Починати мити туалет потрiбно з найменш забруднених поверхонь, поступово переходячи до найбільш брудних. Але перш ніж почати прибирання, необхідно залити під обідок унітазу дезинфікуючий чистячий засіб, наприклад, гель для туалету Comet. Він активно розщеплюватиме вапняний наліт і іржу, поки ви миєте інші предмети. Це допоможе скоротити час прибирання. </p>
+                </li>
+                <li>
+                  <p><img src="/static/assets/img/icons/2/14.png?12047425babf210b31d287bad8926f2d"><span>4</span></p>
+                  <p>Не забувайте про те, що боротьба з бактеріями - одне з головних завдань при прибиранні в туалеті, тому постарайтеся використовувати дезинфікуючий засіб для всього, до чого торкаєтеся : вимикач, дверна ручка, утримувач для паперу, спусковий механізм унітазу і так далі. І, звичайно, особливо ретельно вимийте йоршик для унітазу! </p>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section class="steps">
+            <div class="inner">
+              <h3>Зрозуміло, що при прибиранні туалету головним об'єктом уваги є унітаз. Його поверхню легко очистити, якщо робити це в певній послідовності.</h3>
+              <div class="step-1">
+                <div class="img"><img src="/static/pages/article/toilet/img/1.png?ec293e7296a151dc44f2639819c7e726"></div>
+                <div class="caption">
+                  <h4><span>1</span> <span>Вимийте зовнішню<br>поверхню унітазу:</span></h4>
+                  <ul>
+                    <li>протріть кнопку спускового механізму і поверхню усього бачка,</li>
+                    <li>мити стілець розпочинайте з тих частин, які в процесі використання торкаються до голих ділянок тіла,</li>
+                    <li>вимийте поверхню чаші унітазу і його основу,</li>
+                    <li>протріть досуха усю зовнішню поверхню чистою ганчіркою.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="step-2">
+                <div class="caption">
+                  <h4><span>2</span> <span>Вимийте внутрішню <br>поверхню унітазу</span></h4>
+                  <ul>
+                    <li>ретельно потріть йоршиком дно;</li>
+                    <li>протріть губкою чашу унітазу з середини, під обідком і сам обідок; якщо ви за нашою порадою розпочали прибирання з обробки обідка гелем для туалету Comet, то зараз забруднення віддалятимуться без додаткових зусиль; </li>
+                    <li>злийте воду з бачка.</li>
+                  </ul>
+                </div>
+                <div class="product">
+                  <p>Засоби, які допоможуть вам:</p>
+                  <p><a href="/ua/products/toilet_gel_comet.html?rel=0"><img src="/static/assets/img/products/circle/7.png?3c937ef8f373effd3a373e711b1801b5"></a></p>
+                  <p>Гель для туалету<br>Comet</p>
+                </div>
+              </div>
+              <div class="important">
+                <h3>Важливо знати</h3>
+                <p>У Інтернеті можна знайти "народні поради" використання сильних кислот, але від таких "експериментів" краще відмовитися. Необережне використання хімікатів може призвести до хімічного опіку.<br>Крім того, кислоти можуть пошкодити емаль унітазу. </p>
+              </div>
+              <div class="step-3">
+                <div class="product">
+                  <p>Засоби, які допоможуть вам:</p>
+                  <p><a href="/ua/products/universal_gel_comet.html?rel=0"><img src="/static/assets/img/products/circle/5.png?d54a1212dfdcf8d1f44281162f0875cd"></a></p>
+                  <p>Універсальний гель<br>Comet</p>
+                </div>
+                <div class="caption">
+                  <p>Щоб вимити увесь туалет, недостатньо використовувати одноуніверсальний засіб. Характер забруднень буває різноманітним - пил, частинки освіжувача повітря, продукти життєдіяльності, харчові відходи і так далі. Якщо ви хочете підбирати побутову хімію для кожного окремого випадку, доведеться закупити цілий ящик миючих засобів. Їхня купівля вимагає додаткових фінансових коштів, а зберігання - місця на полиці. </p>
+                  <p>Підберіть один слаболужний засіб, який підійде як для чищення унітазу, так і для дезинфекції інших поверхонь  - якість миття буде нітрохи не гіршою. З прибиранням туалетної кімнати добре впорається універсальній гель Comet. У концентрованому виді його можна застосовувати при митті унітазу, а для прибирання інших поверхонь, у тому числі підлог і стін, використовувати розчин - 60 мл засобу на 5 літрів теплої води. </p>
+                  <p>Легкого вам прибирання!  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="advice">
+            <h2>Советы экспертов для уборки туалета:</h2>
+            <div class="items" directive="advice">
+              <ul>
+                <li class="item">
+                  <div class="inner">
+                    <div class="title">
+                      <div class="icon"><img src="/static/assets/img/icons/advice/1.png?7db3df08c3729c0249f0365c538410a7"></div>
+                      <div class="name">Геть іржу: як з легкістю позбавитися від корозії. </div>
+                    </div>
+                    <div class="tags">#туалет, #унiтаз, #іржа</div>
+                    <div class="caption">Як очистити поверхню унітазу від жовтого нальоту іржі? Дізнайтеся з нашої поради, як це зробити швидко і легко!</div>
+                    <div class="btn"><a href="/ua/expert_advice/toilet_rust.html"><span>Дізнатись детальніше</span></a></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+<footer>
+  <div class="round-top">
+    <div class="round"></div>
+  </div>
+  <div class="bg"></div>
+  <div class="description">
+    <div class="inner">
+      <p class="mail"> ПИШІТЬ НАМ НА <a href="mailto:cometservice.ua@ace.info">cometservice.ua@ace.info</a></p>
+      <h1>+38 (044) 338-36-51</h1>
+      <p>Телефон гарячої лінії</p>
+    </div>
+  </div>
+  <div class="links">
+    <div class="inner">
+      <p>© 2020 — Fater S.p.A.  Політика конфіденційності</p>
+    </div>
+  </div>
+</footer>
+      <div id="popups">
+<div class="popup" data-popup-name="feedback">
+  <div class="inner">
+    <div class="title">
+      <h3>Зворотній зв'язок</h3>
+      <div class="close" data-popup-close></div>
+    </div>
+    <div class="body">
+      <div class="form" directive="feedback">
+        <div class="field">
+          <div class="label">як вас звати?</div>
+          <input type="text" name="name">
+          <div class="error error-name"></div>
+        </div>
+        <div class="field">
+          <div class="label">як з вами зв'язатися?</div>
+          <input type="text" name="contacts">
+          <div class="error error-contacts"></div>
+        </div>
+        <div class="field">
+          <div class="label">ваше запитання</div>
+          <textarea name="question"></textarea>
+          <div class="error error-question"></div>
+        </div>
+        <div class="actions">
+          <div class="agree">
+            <input type="checkbox" name="agree" value="1">
+            <div class="label">Я згоден з правилами обробки моїх <br> персональних даних</div>
+          </div>
+          <div class="send"><span>Надіслати запитання</span></div>
+        </div>
+        <div class="error error-agree"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup" data-popup-name="video">
+  <div class="close" data-popup-close></div>
+  <div class="inner" directive="video">
+    <div class="body">
+      <div id="player"></div>
+    </div>
+  </div>
+</div>
+<div class="popup" data-popup-name="language">
+  <div class="inner" directive="language">
+    <div class="body">
+      <div class="step-1">
+        <div class="title">
+          <h3>Ваша країна Україна?</h3>
+        </div>
+        <div class="buttons">
+          <div class="btn btn-close">Так</div>
+          <div class="btn lang">Нi</div>
+        </div>
+      </div>
+      <div class="step-2">
+        <div class="title">
+          <h3>Виберіть Вашу країну</h3>
+        </div>
+        <div class="buttons">
+          <div class="btn" lang="kz">Казахстан</div>
+          <div class="btn" lang="rus">Росія</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+    </main>
+  </body>
+</html>

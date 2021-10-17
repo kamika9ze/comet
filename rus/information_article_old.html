@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="minimal-ui, width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>Comet</title>
+<style>
+  @keyframes scale {
+    0% {
+    	transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+    45% {
+      transform: scale(0);
+      -o-transform: scale(0);
+      -ms-transform: scale(0);
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    }
+    80% {
+      transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+  }
+
+  @-o-keyframes scale {
+    0% {
+    	transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+    45% {
+      transform: scale(0);
+      -o-transform: scale(0);
+      -ms-transform: scale(0);
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    }
+    80% {
+      transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+  }
+
+  @-ms-keyframes scale {
+    0% {
+    	transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+    45% {
+      transform: scale(0);
+      -o-transform: scale(0);
+      -ms-transform: scale(0);
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    }
+    80% {
+      transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+  }
+
+  @-webkit-keyframes scale {
+    0% {
+    	transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+    45% {
+      transform: scale(0);
+      -o-transform: scale(0);
+      -ms-transform: scale(0);
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    }
+    80% {
+      transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+  }
+
+  @-moz-keyframes scale {
+    0% {
+    	transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+    45% {
+      transform: scale(0);
+      -o-transform: scale(0);
+      -ms-transform: scale(0);
+      -webkit-transform: scale(0);
+      -moz-transform: scale(0);
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    }
+    80% {
+      transform: scale(1);
+      -o-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      opacity: 1;
+      -moz-opacity: 0.6;
+      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    }
+  }
+
+  body {
+  	margin: 0;
+  	background: #FFF;
+  }
+
+
+
+  body .main-preloader {
+  	background: #FFF;
+  	visibility: visible;
+  	opacity: 1;
+  	top: 0;
+  	z-index: 9999;
+  	position: fixed;
+  	width: 100%;
+  	height: 100%;
+  	color: #000;
+  	overflow: hidden;
+  }
+
+  body .main-preloader.main-preloader-inactive {
+  	visibility: hidden;
+  	opacity: 0;
+  	-moz-opacity: 0;
+  	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  	transition: visibility 0.81s, opacity 0.8s linear;
+  	-o-transition: visibility 0.81s, opacity 0.8s linear;
+  	-ms-transition: visibility 0.81s, opacity 0.8s linear;
+  	-webkit-transition: visibility 0.81s, opacity 0.8s linear;
+  	-moz-transition: visibility 0.81s, opacity 0.8s linear;
+  }
+
+  body .main-preloader .preloader {
+  	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	margin-left: -49px;
+
+  }
+
+
+  .main-preloader .preloader > div {
+    background-color: #194285;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    margin: 0px 5px;
+    animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    display: inline-block;
+  }
+
+  body .main-preloader .preloader > div:nth-child(1) {
+    animation: scale 1s -0.24s infinite;
+    -o-animation: scale 1s -0.24s infinite;
+    -ms-animation: scale 1s -0.24s infinite;
+    -webkit-animation: scale 1s -0.24s infinite;
+    -moz-animation: scale 1s -0.24s infinite;
+  }
+  .main-preloader .preloader > div:nth-child(2) {
+    animation: scale 1s -0.12s infinite;
+    -o-animation: scale 1s -0.12s infinite;
+    -ms-animation: scale 1s -0.12s infinite;
+    -webkit-animation: scale 1s -0.12s infinite;
+    -moz-animation: scale 1s -0.12s infinite;
+  }
+  body .main-preloader .preloader > div:nth-child(3) {
+    animation: scale 1s 0s infinite;
+    -o-animation: scale 1s 0s infinite;
+    -ms-animation: scale 1s 0s infinite;
+    -webkit-animation: scale 1s 0s infinite;
+    -moz-animation: scale 1s 0s infinite;
+  }
+</style>
+  <link rel="apple-touch-icon" sizes="57x57" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-icon-180x180.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Comet"><link rel="icon" type="image/png" sizes="32x32" href="/icons-787d0e4e69f7396e25605762f21bb827/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/icons-787d0e4e69f7396e25605762f21bb827/favicon-16x16.png"><link rel="shortcut icon" href="/icons-787d0e4e69f7396e25605762f21bb827/favicon.ico"><meta name="mobile-web-app-capable" content="yes"><meta name="theme-color" content="#fff"><meta name="application-name" content="Comet"><link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-320x460.png"><link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-640x920.png"><link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-640x1096.png"><link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-750x1294.png"><link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-1182x2208.png"><link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-1242x2148.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-748x1024.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-768x1004.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-1496x2048.png"><link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" href="/icons-787d0e4e69f7396e25605762f21bb827/apple-touch-startup-image-1536x2008.png"><link href="/bundles/styles/styles.css?1894f9fd47fd65d2f22b" rel="stylesheet"><link href="/bundles/app/app.css?1894f9fd47fd65d2f22b" rel="stylesheet"><script type="text/javascript" src="/bundles/styles/styles.min.js?1894f9fd47fd65d2f22b"></script><script type="text/javascript" src="/bundles/scripts/scripts.min.js?1894f9fd47fd65d2f22b"></script><script type="text/javascript" src="/bundles/app/app.min.js?1894f9fd47fd65d2f22b"></script></head>
+  <body lang="rus">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111243022-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-111243022-1');
+</script><script type="text/javascript">(function(g,a,i){(a[i]=a[i]||[]).push(function(){try{a.yaCounter46629366=new Ya.Metrika({id:46629366,clickmap:true,trackLinks:true,accurateTrackBounce:true})}catch(c){}});var h=g.getElementsByTagName("script")[0],b=g.createElement("script"),e=function(){h.parentNode.insertBefore(b,h)};b.type="text/javascript";b.async=true;b.src="https://mc.yandex.ru/metrika/watch.js";if(a.opera=="[object Opera]"){g.addEventListener("DOMContentLoaded",e,false)}else{e()}})(document,window,"yandex_metrika_callbacks");</script> <noscript> <div><img src="https://mc.yandex.ru/watch/46629366" style="position:absolute;left:-9999px" alt=""/></div> </noscript>
+    <div class="main-preloader">
+      <div class="preloader">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <main>
+<header directive="header">
+  <div class="inner">
+    <div class="logo"><a href="/rus/"></a></div>
+    <div class="menu active">
+      <div class="list">
+        <ul>
+          <li class="drop">
+            <div class="title">Продукты</div>
+            <div class="items">
+              <ul class="products">
+                <li><a href="/rus/products/powder_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/universal-lemon.png?6559506018fb03c26ebb84e89784a343"></div>
+                    <p>Универсальный<br>порошок comet</p></a></li>
+                <li><a href="/rus/products/powder_without_chlorinol.html">
+                    <div class="img"><img src="/static/assets/img/menu/without_chlorinol_morning_breathe.png?68ff462b27aacc56017b7a5c88fd5c26"></div>
+                    <p>Чистящий<br> порошок Comet<br> без хлора</p></a></li>
+                <li><a href="/rus/products/universal_gel_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/universal-gel-lemon.png?6d29157a3f79b70762531ee43933214d"></div>
+                    <p>Универсальный<br>гель comet</p></a></li>
+                <li><a href="/rus/products/toilet_gel_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/toilet_expert_breeze.png?e28078dfe152596419a4f16948d8b60f"></div>
+                    <p>Гель для туалета<br>Comet</p></a></li>
+                <li><a href="/rus/products/scour_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/scour.png?bc6252397b9ada8fa62158b702af39f0"></div>
+                    <p>Чистящее средство<br>для туалета Comet</p></a></li>
+                <li><a href="/rus/products/bathroom_spray_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/comet-bath-spray-500ml.png?fd0aec27cf9b545b45b55e199fd7a2ac"></div>
+                    <p>Спрей для ванной<br>Comet</p></a></li>
+                <li><a href="/rus/products/bathroom_gel_comet.html">
+                    <div class="img"><img src="/static/assets/img/menu/bomet-bath-gel-500ml.png?44ebdfd1ed9ec0e1c1bbe00e97334f27"></div>
+                    <p>Гель для ванной<br>Comet</p></a></li>
+                <li><a href="/rus/products/toilet_block.html">
+                  <div class="img"><img src="/static/assets/img/menu/toilet_block.png"></div>
+                  <p>Туалетный блок<br> Comet</p></a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="drop">
+            <div class="title"><a href="/rus/expert_advice/index.html">Советы экспертов</a></div>
+            <div class="items">
+              <ul>
+                <li><a href="/rus/expert_advice/kitchen.html">Кухня</a></li>
+                <li><a href="/rus/expert_advice/bathroom.html">Ванная комната</a></li>
+                <li><a href="/rus/expert_advice/toilet.html">Туалет</a></li>
+                <li><a href="/rus/expert_advice">Все советы</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="https://cometpromo.ru/">Aкция</a></li>
+        </ul>
+      </div>
+      <div class="lang">
+        <ul>
+          <li>rus</li>
+          <li><a href="/ua/">ua</a></li>
+          <li><a href="/kz/">kaz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="menu-collapsed" icon="blue">
+      <div class="wrapper">
+        <div class="icon"></div>
+        <div class="container">
+          <div class="close"><img src="/static/assets/img/menu/close.png?ef545f1cb30dd70146587c9abaa1c2f9"></div>
+          <div class="list">
+            <ul>
+              <li class="drop">
+                <div class="title"><span>Продукты</span></div>
+                <div class="items">
+                  <ul>
+                    <li><a href="/rus/products/powder_without_chlorinol.html">Чистящий порошок Comet без хлора</a></li>
+                    <li><a href="/rus/products/powder_comet.html">Универсальный порошок Сomet</a></li>
+                    <li><a href="/rus/products/universal_gel_comet.html">Универсальный гель Сomet</a></li>
+                    <li><a href="/rus/products/toilet_gel_comet.html">Гель для туалета Comet</a></li>
+                    <li><a href="/rus/products/scour_comet.html">Чистящее средство для туалета Comet</a></li>
+                    <li><a href="/rus/products/bathroom_gel_comet.html">Гель для ванной Comet</a></li>
+                    <li><a href="/rus/products/bathroom_spray_comet.html">Спрей для ванной Comet</a></li>
+                    <li><a href="/rus/products/toilet_block.html">Туалетный блок Сomet</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="drop">
+                <div class="title"><span>Советы экспертов</span></div>
+                <div class="items">
+                  <ul>
+                    <li><a href="/rus/expert_advice/kitchen.html">Кухня</a></li>
+                    <li><a href="/rus/expert_advice/bathroom.html">Ванная комната</a></li>
+                    <li><a href="/rus/expert_advice/toilet.html">Туалет</a></li>
+                    <li><a href="/rus/expert_advice">Все советы</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><a href="http://comet.ru/winthetime/">Aкция</a></li>
+            </ul>
+          </div>
+          <div class="lang">
+            <ul>
+              <li class="active">rus</li>
+              <li><a href="/ua/">ua</a></li>
+              <li><a href="/kz/">kaz</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="page product-1 page-covid" page="product">
+        <div class="top-frame" directive="topFrame">
+          <div class="front front-covid">
+            <div class="inner">
+
+              <div class="caption caption-covid">
+                <h1></h1>
+              </div>
+            </div>
+            <div class="round-bottom">
+              <div class="round">
+                <div class="down"></div>
+              </div>
+            </div>
+          </div>
+          <div class="back">
+            <!-- <div class="overlay overlay-blue"></div> -->
+            <!-- <div class="overlay overlay-white"></div> -->
+            <div class="bg bg-covid"></div>
+          </div>
+        </div>
+        <div class="sections">
+          <section class="section-1">
+            <div class="inner inner-covid">
+              <div class="description description-covid">
+                <p>Совсем недавно мир узнал о новом инфекционном заболевании – COVID-19. И изо дня в день коронавирусная инфекция начинает представлять все большую угрозу для нас и наших близких. Не стоит пренебрегать мерами безопасности и рекомендациями врачей, так как именно их соблюдение поможет сохранить свое здоровье, Вашей семьи и окружающих людей.<br />
+                  <br />
+                  Но и не стоит также паниковать раньше времени. Всемирная Организация Здравоохранения (ВОЗ) заботится о населении и предлагает профилактические меры, которые способствуют уничтожению вируса. Если придерживаться этих рекомендаций, то коронавирус не сможет пробраться в Ваш дом и в Вашу жизнь.<br />
+                  <br />
+                  В элементарной уборке, ВОЗ рекомендует использовать продукты на основе хлора.* Универсальные гели COMET, средство для чистки унитазов Полярный Бриз и порошки с хлоринолом COMET имеют в составе хлор, это означает, что они отлично дезинфицируют и убивают 99,99% бактерий. Эти свойства были продемонстрированы Институтом Дезинфектологии Роспотребнадзора.<br />
+                  <br />          
+                  <br />          
+                  <b>С учетом рекомендаций ВОЗ, мы разработали для вас перечень самых необходимых мер профилактики:</b><br />
+                  <br />
+                  • Используйте Универсальный Гель COMET для уборки, так как он на основе хлора, что соответствует рекомендациям ВОЗ.<br />
+                  <br />
+                  • Чистите каждый день все поверхности, к которым вы прикасаетесь: ручки дверей и шкафов. Вы можете оставить универсальный гель COMET на поверхности на 5 минут, затем очистить и смыть водой. **<br />
+                  <br />
+                  • Протирайте гаджеты и смартфоны с дезинфицирующими средствами на основе спирта. Знаете ли вы, что касаетесь своего смартфона ежедневно около 2617 раз?<br />
+                  <br />
+                  • Убедитесь, что члены вашей семьи часто моют руки. Распространение бактерий и вирусов могло бы быть меньше, если бы каждый соблюдал это правило. Если кто-либо из членов семьи чихает или кашляет, обязательно обратитесь к врачу.<br />
+                  <br />
+                  • Дезинфицируйте ваш туалет после каждого использования чистящим средством для туалета COMET ПОЛЯРНЫЙ БРИЗ. Вылейте средство на всю поверхность унитаза. Оставьте на 15 минут, затем смойте водой.<br />
+                  <br />
+                  • Очистите ванную комнату с помощью продуктов на основе хлора, таких как универсальный гель COMET.<br />
+                  <br />
+                  • Чистите пол неразбавленным универсальным гелем COMET, оставьте на 5 минут, смойте водой и проветрите помещение. **<br />
+                  <br />
+                  • Кухня также нуждается в хорошей чистке. Используйте порошок COMET с хлоринолом против стойких пятен и для дезинфекции. Кроме того, порошок COMET убивает 99,99% бактерий!<br />
+                  <br />
+                  • Используйте тряпку только один раз, так как она поглощает много микробов и бактерий.<br />
+                  <br />
+                  • Чистите каждый день мусорное ведро, ведь в нем накапливается много бактерий. Для этого используйте универсальный гель COMET.<br />
+                  <br />
+                  <br />
+                  <b>Позаботьтесь о своих близких, а Comet позаботится о чистоте вашего дома!</b><br />
+                  <br />
+                  Для получения дополнительной информации о коронавирусе, пожалуйста, посетите сайт ВОЗ.<br />
+                  <i><a href="https://www.who.int/health-topics/coronavirus#tab=tab_1" target="_blank">*https://www.who.int/health-topics/coronavirus#tab=tab_1</a><br />
+                  **Не используйте гель на изношенных, поцарапанных, шершавых, окрашенных поверхностях алюминии, а также для чистки изделий из серебра. Перед использованием пробуйте на небольшом участке. Избегайте контакта с одеждой, тканью, коврами и деревом из-за возможного обесцвечивания.</i><br />
+                </p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+      <footer>
+        <div class="round-top">
+          <div class="round"></div>
+        </div>
+        <div class="bg"></div>
+        <div class="description">
+          <div class="inner">
+            <p class="mail"> Пишите нам на <a href="mailto:cometpromo@progressiongroup.ru">cometservice.ru@ace.info</a></p>
+            <h1>+7 (495) 646-93-36</h1>
+            <p>Телефон горячей линии</p>
+          </div>
+        </div>
+        <div class="links">
+          <div class="inner">
+            <p>© 2020 — Fater S.p.A.  Политика конфиденциальности</p>
+            <p> <a href="/static/assets/img/passportComet.zip">Cкачать паспорта продуктов Рус/Укр</a></p>
+          </div>
+        </div>
+      </footer>
+      <div id="popups">
+<div class="popup" data-popup-name="feedback">
+  <div class="inner">
+    <div class="title">
+      <h3>Обратная связь</h3>
+      <div class="close" data-popup-close></div>
+    </div>
+    <div class="body">
+      <div class="form" directive="feedback">
+        <div class="field">
+          <div class="label">как вас зовут?</div>
+          <input type="text" name="name">
+          <div class="error error-name"></div>
+        </div>
+        <div class="field">
+          <div class="label">как с вами связаться?</div>
+          <input type="text" name="contacts">
+          <div class="error error-contacts"></div>
+        </div>
+        <div class="field">
+          <div class="label">ваш вопрос</div>
+          <textarea name="question"></textarea>
+          <div class="error error-question"></div>
+        </div>
+        <div class="actions">
+          <div class="agree">
+            <input type="checkbox" name="agree" value="1">
+            <div class="label">Я согласен с правилами обработки моих<br>персональных данных</div>
+          </div>
+          <div class="send"><span>Отправить вопрос</span></div>
+        </div>
+        <div class="error error-agree"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup" data-popup-name="video">
+  <div class="close" data-popup-close></div>
+  <div class="inner" directive="video">
+    <div class="body">
+      <div id="player"></div>
+    </div>
+  </div>
+</div>
+<div class="popup" data-popup-name="language">
+  <div class="inner" directive="language">
+    <div class="body">
+      <div class="step-1">
+        <div class="title">
+          <h3>Ваша страна Россия?</h3>
+        </div>
+        <div class="buttons">
+          <div class="btn btn-close">Да</div>
+          <div class="btn lang">Нет</div>
+        </div>
+      </div>
+      <div class="step-2">
+        <div class="title">
+          <h3>Выберите Вашу страну</h3>
+        </div>
+        <div class="buttons">
+          <div class="btn" lang="kz">Казахстан</div>
+          <div class="btn" lang="ua">Украина</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+    </main>
+  </body>
+</html>
