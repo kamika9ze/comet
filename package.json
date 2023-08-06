@@ -1,0 +1,17 @@
+{
+	"name": "purina",
+	"version": "1.0.0",
+	"description": "",
+	"author": "Naumenko",
+	"dependencies": {
+		"grunt": "latest",
+		"grunt-browser-sync": "latest",
+		"grunt-contrib-copy": "latest",
+		"grunt-contrib-less": "latest",
+		"grunt-contrib-watch": "latest",
+		"grunt-include-replace": "latest"
+	},
+	"devDependencies": {
+		"load-grunt-tasks": "^4.0.0"
+	}
+}

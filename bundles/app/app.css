@@ -1477,7 +1477,8 @@ main > header .inner .logo {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    width: 110px
+    width: 110px;
+    position: absolute;
 }
 
 main > header .inner .logo img {
@@ -1835,13 +1836,13 @@ main > header .inner .menu .list > ul {
     -webkit-box-pack: justify;
     -moz-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: center;
     width: 600px;
     margin: 0 auto
 }
 
 main > header .inner .menu .list > ul > li {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 700;
     color: #194285;
     letter-spacing: 0;
@@ -1864,8 +1865,8 @@ main > header .inner .menu .list > ul > li:first-child {
 }
 
 main > header .inner .menu .list > ul > li:last-child {
-    opacity: 0;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0)
+    /*opacity: 0;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0)*/
 }
 
 main > header .inner .menu .list > ul > li a {
@@ -2203,7 +2204,9 @@ main > header .inner .menu-collapsed {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -ms-flex-positive: 1;
-    flex-grow: 1
+    flex-grow: 1;
+    position: absolute;
+    right: 0;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
@@ -4614,7 +4617,9 @@ main > footer .links .inner ul li:first-child + li {
     box-sizing: border-box;
     margin: 0 15px
 }
-
+[directive=articles] ul .item a {
+    height: 100%;
+}
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
     [directive=articles] ul .item {
         width: 270px;
@@ -4942,7 +4947,7 @@ main > footer .links .inner ul li:first-child + li {
 }
 
 [directive=articles] ul .item .caption .description p {
-    font-size: 18px;
+    font-size: 20px;
     color: #194285;
     line-height: 24px;
     height: 140px;
@@ -5148,7 +5153,7 @@ main > footer .links .inner ul li:first-child + li {
 }
 
 [directive=articles] ul .item .caption .description-full p {
-    font-size: 18px;
+    font-size: 20px;
     color: #194285;
     line-height: 24px;
     height: 140px;
@@ -5339,7 +5344,7 @@ main > footer .links .inner ul li:first-child + li {
     }
 }
 
-[directive=articles] ul .item .caption .button a {
+[directive=articles] ul .item .caption .button div {
     margin: 0 auto;
     width: 156px;
     height: 40px;
@@ -5559,13 +5564,20 @@ main > footer .links .inner ul li:first-child + li {
     border: 2px solid #91e0ff;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    padding: 24px;
+    /*padding: 24px;*/
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
     margin: 0 11px
+}
+
+[directive=advice] ul .item a {
+    padding: 24px;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
 }
 
 [directive=advice] ul .item:focus {
@@ -5600,6 +5612,59 @@ main > footer .links .inner ul li:first-child + li {
     color: #194285;
     overflow: hidden
 }
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 1024px) {
+    [directive=advice] ul .item:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99999;
+        width: 100%;
+        display: inline-block;
+        visibility:visible;
+    }    
+    [directive=advice] ul .item:hover:before {
+        visibility:hidden;
+        -webkit-transition-property: visibility;
+        -webkit-transition-duration: 1s;
+        -moz-transition-property: visibility;
+        -moz-transition-duration: 1s;
+        -o-transition-property: visibility;
+        -o-transition-duration: 1s;
+        transition-property: visibility;
+        transition-duration: 1s;
+    }
+    [directive=articles] ul .item {
+        position: relative;
+    }
+    [directive=articles] ul .item:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99999;
+        width: 100%;
+        display: inline-block;
+        visibility:visible;
+    }    
+    [directive=articles] ul .item:hover:before {
+        visibility:hidden;
+        -webkit-transition-property: visibility;
+        -webkit-transition-duration: 1s;
+        -moz-transition-property: visibility;
+        -moz-transition-duration: 1s;
+        -o-transition-property: visibility;
+        -o-transition-duration: 1s;
+        transition-property: visibility;
+        transition-duration: 1s;
+    }
+}
+
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
     [directive=advice] ul .item .inner .title .name {
@@ -5819,7 +5884,7 @@ main > footer .links .inner ul li:first-child + li {
     transition: bottom .5s
 }
 
-[directive=advice] ul .item .inner .btn a {
+[directive=advice] ul .item .inner .btn div {
     width: 186px;
     height: 40px;
     display: -webkit-box;
@@ -8831,7 +8896,7 @@ main > .page[page=home] .sections .promo {
 }
 
 main > .page[page=home] .sections section.section-1 {
-    padding-top: 18px;
+    padding-top: 192px;
     padding-bottom: 200px;
     z-index: 2
 }
@@ -8920,7 +8985,7 @@ main > .page[page=home] .sections section.section-1 .round-bottom .round {
 }
 
 main > .page[page=home] .sections section.section-1 > .inner {
-    color: #194285
+    color: #194285;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
@@ -8981,13 +9046,16 @@ main > .page[page=home] .sections section.section-1 > .inner > .title:after {
 }
 
 main > .page[page=home] .sections section.section-1 > .inner > .title h2 {
-    font-size: 48px;
+    font-size: 56px;
     color: #194285;
     letter-spacing: 0;
-    width: 60%;
+    width: 100%;
     float: left;
     display: inline-block;
-    vertical-align: top
+    vertical-align: top;
+    text-align: center;
+    margin-bottom: 36px;
+    text-align: center;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
@@ -9042,6 +9110,12 @@ main > .page[page=home] .sections section.section-1 > .inner > .title h2 {
         text-align: center;
         width: 95%;
         float: none
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    main > .page[page=home] .sections section.section-1 > .inner > .title {
+        text-align: center;
     }
 }
 
@@ -9178,6 +9252,12 @@ main > .page[page=home] .sections section.section-1 > .inner > .title h2 {
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    main > .page[page=home] .sections section.section-1 > .inner > .title {
+        text-align: center;
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
     main > .page[page=home] .sections section.section-1 > .inner > .title h2 {
         margin: 20px 0;
         font-size: 30px;
@@ -9212,7 +9292,7 @@ main > .page[page=home] .sections section.section-1 > .inner > .title h2 {
 
 @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
     main > .page[page=home] .sections section.section-1 > .inner > .title h2 {
-        margin: 20px 0;
+        margin: 60px 0 20px;
         font-size: 30px;
         line-height: 30px;
         text-align: center;
@@ -9280,8 +9360,10 @@ main > .page[page=home] .sections section.section-1 > .inner > .title p {
     float: left;
     display: inline-block;
     vertical-align: top;
-    width: 40%;
-    line-height: 30px
+    width: 100%;
+    line-height: 37px;
+    font-size: 28px;
+    text-align: center;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
